@@ -10,6 +10,7 @@ import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigati
 
 import IconHome from 'material-ui/svg-icons/communication/business';
 import IconChat from 'material-ui/svg-icons/communication/chat';
+import IconOa from 'material-ui/svg-icons/communication/call';
 import IconMe from 'material-ui/svg-icons/communication/email';
 
 // import FontIcon from 'material-ui/FontIcon';
@@ -71,9 +72,14 @@ export default class Container extends Component {
                             onClick={() => this.select(1)}
                         />
                         <BottomNavigationItem
+                            label="OA"
+                            icon={<IconOa />}
+                            onClick={() => this.select(2)}
+                        />
+                        <BottomNavigationItem
                             label="我的"
                             icon={<IconMe />}
-                            onClick={() => this.select(2)}
+                            onClick={() => this.select(3)}
                         />
                     </BottomNavigation>
                 </div>
@@ -90,6 +96,9 @@ export default class Container extends Component {
                 FlowRouter.go('/im');
                 break;
             case 2:
+                FlowRouter.go('/oa');
+                break;
+            case 3:
                 FlowRouter.go('/me');
                 break;
             default:
