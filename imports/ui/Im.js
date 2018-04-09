@@ -14,7 +14,7 @@ export default class Im extends Component {
     render() {
         return (
             <div>
-                即时通讯
+                即时通讯。。。。
             </div>
         );
     }
