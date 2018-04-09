@@ -1,20 +1,71 @@
 import React,{ Component } from 'react';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import FontIcon from 'material-ui/FontIcon';
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
-const nearbyIcon = <IconLocationOn />;
+import {List, ListItem} from 'material-ui/List';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+import Avatar from 'material-ui/Avatar';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import {blue500, yellow600} from 'material-ui/styles/colors';
+import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 
 export default class Me extends Component {
     render() {
         return (
             <div>
-                我的
+                <List>
+                    <Subheader inset={true}>Folders</Subheader>
+                    <ListItem
+                        leftAvatar={<Avatar icon={<FileFolder />} />}
+                        rightIcon={<ActionInfo />}
+                        primaryText="Photos"
+                        secondaryText="Jan 9, 2014"
+                    />
+                    <ListItem
+                        leftAvatar={<Avatar icon={<FileFolder />} />}
+                        rightIcon={<ActionInfo />}
+                        primaryText="Recipes"
+                        secondaryText="Jan 17, 2014"
+                    />
+                    <ListItem
+                        leftAvatar={<Avatar icon={<FileFolder />} />}
+                        rightIcon={<ActionInfo />}
+                        primaryText="Work"
+                        secondaryText="Jan 28, 2014"
+                    />
+                </List>
+                <Divider inset={true} />
+                <List>
+                    <Subheader inset={true}>Files</Subheader>
+                    <ListItem
+                        leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
+                        rightIcon={<ActionInfo />}
+                        primaryText="Vacation itinerary"
+                        secondaryText="Jan 20, 2014"
+                    />
+                    <ListItem
+                        leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />}
+                        rightIcon={<ActionInfo />}
+                        primaryText="Kitchen remodel"
+                        secondaryText="Jan 10, 2014"
+                    />
+                </List>
+                <Divider inset={true} />
+                <List>
+                    <Subheader inset={true}>Files</Subheader>
+                    <ListItem
+                        leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
+                        rightIcon={<ActionInfo />}
+                        primaryText="Vacation itinerary"
+                        secondaryText="Jan 20, 2014"
+                    />
+                    <ListItem
+                        leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />}
+                        rightIcon={<ActionInfo />}
+                        primaryText="Kitchen remodel"
+                        secondaryText="Jan 10, 2014"
+                    />
+                </List>
             </div>
         );
     }

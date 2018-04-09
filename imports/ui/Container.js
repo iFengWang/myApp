@@ -3,20 +3,18 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {cyan500,cyan700,grey100,grey400,grey500,pinkA200,pink500, yellow100} from 'material-ui/styles/colors';
+import {cyan500,cyan700,grey100,grey400,grey500,pinkA100,pinkA200,pink500, yellow100, lime100, lime500} from 'material-ui/styles/colors';
 
 import AppBar from 'material-ui/AppBar';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 
-import FontIcon from 'material-ui/FontIcon';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import IconHome from 'material-ui/svg-icons/communication/business';
+import IconChat from 'material-ui/svg-icons/communication/chat';
+import IconMe from 'material-ui/svg-icons/communication/email';
 
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
-const nearbyIcon = <IconLocationOn />;
-
-// import Home from './Home.js';
-// import Im from './Im.js';
+// import FontIcon from 'material-ui/FontIcon';
+// const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
+// const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -26,20 +24,20 @@ const muiTheme = getMuiTheme({
         accent1Color: pinkA200,
         accent2Color: grey100,
         accent3Color: grey500,
-        textColor: cyan700,
-        canvasColor: pink500,
+        textColor: lime500,
+        canvasColor: pinkA100,
     },
     appBar: {
       height: 44,
     },
-    // bottomNavigation: {
-        // backgroundColor: muiTheme.palette.primary1Color,
+    bottomNavigation: {
+        backgroundColor: pinkA200,
         // unselectedColor: (0, _colorManipulator.fade)(palette.textColor, 0.54),
         // selectedColor: palette.primary1Color,
         // height: 56,
         // unselectedFontSize: 12,
         // selectedFontSize: 14
-    // },
+    },
     // spacing:5,
 });
 
@@ -51,30 +49,30 @@ export default class Container extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={{display:'flex', display:'-webkit-flex', flex:'flex-grow', flexGrow:1, flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100}}>
+                <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100}}>
                     <AppBar 
                     title={this.props.title} 
                     titleStyle={{margin:0,textAlign:'center'}}
                     showMenuIconButton={false}
                     zDepth={2}
                     />
-                    <div style={{height:550}}>
+                    <div style={{height:550,overflow:'auto'}}>
                         {this.props.contents}
                     </div>
-                    <BottomNavigation selectedIndex={this.selectedIndex}>
+                    <BottomNavigation selectedIndex={this.selectedIndex} zDepth={2}>
                         <BottomNavigationItem
-                            label="Recents"
-                            icon={recentsIcon}
+                            label="首页"
+                            icon={<IconHome />}
                             onClick={() => this.select(0)}
                         />
                         <BottomNavigationItem
-                            label="Favorites"
-                            icon={favoritesIcon}
+                            label="聊天"
+                            icon={<IconChat />}
                             onClick={() => this.select(1)}
                         />
                         <BottomNavigationItem
-                            label="Nearby"
-                            icon={nearbyIcon}
+                            label="我的"
+                            icon={<IconMe />}
                             onClick={() => this.select(2)}
                         />
                     </BottomNavigation>
@@ -92,7 +90,7 @@ export default class Container extends Component {
                 FlowRouter.go('/im');
                 break;
             case 2:
-                FlowRouter.go('/vvv');
+                FlowRouter.go('/me');
                 break;
             default:
                 FlowRouter.go('/home');
