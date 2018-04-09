@@ -17,15 +17,16 @@ export default class Home extends Component {
     }
     render() {
         return (
-            <div style={{height:350}}>
+            <div>
                 <AppBar 
                 title='Home' 
                 titleStyle={{margin:0,textAlign:'center'}}
                 showMenuIconButton={false}
                 zDepth={2}
                 />
-                <RaisedButton label='点我' onClick={this.navToIm.bind(this)} />
-
+                <div  style={{height:550}}>
+                    <RaisedButton label='点我' onClick={this.navToIm} />
+                </div>
                 <BottomNavigation selectedIndex={this.selectedIndex}>
                     <BottomNavigationItem
                         label="Recents"
