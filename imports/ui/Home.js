@@ -24,7 +24,7 @@ export default class Home extends Component {
                 showMenuIconButton={false}
                 zDepth={2}
                 />
-                <RaisedButton label='点我' />
+                <RaisedButton label='点我' onClick={this.navToIm.bind(this)} />
 
                 <BottomNavigation selectedIndex={this.selectedIndex}>
                     <BottomNavigationItem
@@ -47,4 +47,5 @@ export default class Home extends Component {
         );
     }
     select = (index) => this.setState({selectedIndex: index});
+    navToIm = (event) => FlowRouter.go('/im');
 }

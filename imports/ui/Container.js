@@ -16,12 +16,21 @@ const muiTheme = getMuiTheme({
         accent1Color: pinkA200,
         accent2Color: grey100,
         accent3Color: grey500,
-        textColor: pink500,
+        textColor: cyan700,
+        canvasColor: pink500,
     },
     appBar: {
       height: 44,
     },
-    spacing:5,
+    // bottomNavigation: {
+        // backgroundColor: muiTheme.palette.primary1Color,
+        // unselectedColor: (0, _colorManipulator.fade)(palette.textColor, 0.54),
+        // selectedColor: palette.primary1Color,
+        // height: 56,
+        // unselectedFontSize: 12,
+        // selectedFontSize: 14
+    // },
+    // spacing:5,
 });
 
 export default class Container extends Component {
