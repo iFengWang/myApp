@@ -10,11 +10,11 @@ const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
 const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
 const nearbyIcon = <IconLocationOn />;
 
-export default class Im extends Component {
+export default class Me extends Component {
     render() {
         return (
             <div>
-                即时通讯
+                我的
             </div>
         );
     }

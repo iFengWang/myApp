@@ -10,12 +10,14 @@ const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
 const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
 const nearbyIcon = <IconLocationOn />;
 
-export default class Im extends Component {
+export default class NotFound extends Component {
     render() {
         return (
-            <div>
-                即时通讯
+            <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:'#00FF00'}}>
+                哥们走错路了！^_^ <br />
+                <RaisedButton label='返回' onClick={this.onClickButton} />
             </div>
         );
     }
+    onClickButton = () => {FlowRouter.go('/home')}
 }
