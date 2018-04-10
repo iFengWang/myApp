@@ -29,7 +29,7 @@ const muiTheme = getMuiTheme({
         canvasColor: pinkA100,
     },
     appBar: {
-      height: 44,
+      height: 64,
     },
     bottomNavigation: {
         backgroundColor: pinkA200,
