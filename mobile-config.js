@@ -23,6 +23,8 @@ App.info({
   App.launchScreens({
     iphone_2x: 'private/splash/Default@2x~iphone.png',
     iphone5: 'private/splash/Default~iphone5.png',
+    iphone6p_portrait: 'private/splash/Default~1242_2208.png',
+    iphone6: 'private/splash/Default~750_1334.png',
   });
   
   // Set PhoneGap/Cordova preferences.
