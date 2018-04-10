@@ -3,19 +3,22 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 
 import { withTracker } from 'meteor/react-meteor-data';
+import '../api/users.js';
 
 class Im extends Component {
 
     renderUsers() {
-        this.props.userList.map((u) => <li>{u.username}</li>);
+        return this.props.userArray.map((u) => (<li>{u.username}</li>));
     }
 
     render() {
         return (
             <div>
-                <ul>
-                    {this.renderUsers.bind(this)}
-                </ul>
+                <div style={{backgroundColor:"#ff0000",width:200,height:200}}>
+                    <ul>
+                        {this.renderUsers()}
+                    </ul>
+                </div>
 
                 <TextField
                 hintText="Hint Text"
@@ -75,6 +78,6 @@ class Im extends Component {
 export default withTracker(() => {
     Meteor.subscribe('UserList');
     return {
-      userList: Meteor.users.find({}).fetch(),
+      userArray: Meteor.users.find({}).fetch(),
     };
   })(Im);

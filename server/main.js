@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 // global.navigator = { userAgent: 'all' };
-import '../imports/api/users.js';
+// import '../imports/api/users.js';
 
 
 Meteor.startup(() => {
