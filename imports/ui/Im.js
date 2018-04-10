@@ -2,10 +2,21 @@ import React,{ Component } from 'react';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 
-export default class Im extends Component {
+import { withTracker } from 'meteor/react-meteor-data';
+
+class Im extends Component {
+
+    renderUsers() {
+        this.props.userList.map((u) => <li>{u.username}</li>);
+    }
+
     render() {
         return (
             <div>
+                <ul>
+                    {this.renderUsers.bind(this)}
+                </ul>
+
                 <TextField
                 hintText="Hint Text"
                 /><br />
@@ -60,3 +71,10 @@ export default class Im extends Component {
         );
     }
 }
+
+export default withTracker(() => {
+    Meteor.subscribe('UserList');
+    return {
+      userList: Meteor.users.find({}).fetch(),
+    };
+  })(Im);

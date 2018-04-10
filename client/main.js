@@ -11,3 +11,4 @@
 // Meteor.startup(() => {
 //   render(<App />, document.getElementById('render-target'));
 // });
+import '../imports/startup/accounts-config.js';

@@ -55,6 +55,7 @@ export default class Container extends Component {
                     title={this.props.title} 
                     titleStyle={{margin:0,textAlign:'center'}}
                     showMenuIconButton={false}
+                    // iconElementRight={<AccountUI />}
                     zDepth={2}
                     />
                     <div style={{height:550,overflow:'auto'}}>

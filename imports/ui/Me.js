@@ -9,6 +9,8 @@ import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import {blue500, yellow600} from 'material-ui/styles/colors';
 import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 
+import AccountUI from './AccountUI.js';
+
 export default class Me extends Component {
     render() {
         return (
@@ -17,7 +19,7 @@ export default class Me extends Component {
                     <Subheader inset={true}>Folders</Subheader>
                     <ListItem
                         leftAvatar={<Avatar icon={<FileFolder />} />}
-                        rightIcon={<ActionInfo />}
+                        rightIcon={<AccountUI />}
                         primaryText="Photos"
                         secondaryText="Jan 9, 2014"
                     />

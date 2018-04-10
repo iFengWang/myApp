@@ -38,7 +38,7 @@ class TaskList extends Component {
 }
 
 export default withTracker(() => {
-    Meteor.subscribe('tasks');
+    Meteor.subscribe('AllTasks');
     return {
       tasks: Tasks.find({},{sort:{createAt:-1}}).fetch(),
     };
