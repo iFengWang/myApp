@@ -11,14 +11,19 @@ App.info({
   
   // Set up resources such as icons and launch screens.
   App.icons({
-    iphone_2x: 'public/icons/icon-60@2x.png',
-    iphone_3x: 'public/icons/icon-60@3x.png',
+    iphone_2x: 'private/icons/icon-60@2x.png',
+    iphone_3x: 'private/icons/icon-60@3x.png',
+    iphone_legacy: 'private/icons/icon-57.png',
+    iphone_legacy_2x: 'private/icons/icon-57@2x.png',
+    ios_settings_3x: 'private/icons/icon-29@3x.png',
+    ipad_spotlight_legacy: 'private/icons/icon-50.png',
+    ipad_spotlight_legacy_2x: 'private/icons/icon-50@2x.png',
   });
   
-//   App.launchScreens({
-//     iphone_2x: 'splash/Default@2x~iphone.png',
-//     iphone5: 'splash/Default~iphone5.png',
-//   });
+  App.launchScreens({
+    iphone_2x: 'private/splash/Default@2x~iphone.png',
+    iphone5: 'private/splash/Default~iphone5.png',
+  });
   
   // Set PhoneGap/Cordova preferences.
   App.setPreference('BackgroundColor', '0xff0000ff');
