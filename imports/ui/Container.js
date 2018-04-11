@@ -14,6 +14,8 @@ const IconChat = <FontIcon className="material-icons" style={{marginRight:15}} c
 const IconOa = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>call</FontIcon>;
 const IconMe = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>email</FontIcon>;
 
+import Paper from 'material-ui/Paper';
+
 // 下拉菜单 **********************************
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -76,14 +78,12 @@ export default class Container extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100, overflow:'hidden'}}>
-                    
+                <Paper style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100, overflow:'hidden'}} zDepth={1}>
                     <Drawer
                     docked={false}
                     width={200}
                     open={this.state.open}
-                    onRequestChange={(open) => this.setState({open})}
-                    >
+                    onRequestChange={(open) => this.setState({open})} >
                         <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
                         <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
                     </Drawer>
@@ -91,14 +91,14 @@ export default class Container extends Component {
                     <AppBar 
                     title={this.props.title} 
                     titleStyle={{margin:0,textAlign:'center'}}
+                    style={{paddingTop:Meteor.isCordova?8:0}}
                     showMenuIconButton={true}
                     iconElementRight={MenuButton}
                     onLeftIconButtonClick={()=> this.setState({open:true})}
-                    zDepth={2}
-                    />
-                    <div style={{height:550,width:'100%',overflow:'auto',display:'flex', flexDirection:'column', alignItems:'center'}}>
+                    zDepth={2} />
+                    <Paper style={{height:550,width:'100%',overflow:'auto',display:'flex', flexDirection:'column', alignItems:'center'}}>
                         {this.props.contents}
-                    </div>
+                    </Paper>
                     <BottomNavigation selectedIndex={this.selectedIndex} zDepth={2}>
                         <BottomNavigationItem
                             label="首页"
@@ -121,7 +121,7 @@ export default class Container extends Component {
                             onClick={() => this.select(3)}
                         />
                     </BottomNavigation>
-                </div>
+                </Paper>
             </MuiThemeProvider>
         );
     }
