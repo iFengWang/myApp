@@ -91,7 +91,7 @@ export default class Container extends Component {
                     <AppBar 
                     title={this.props.title} 
                     titleStyle={{margin:0,textAlign:'center'}}
-                    style={{paddingTop:Meteor.isCordova?8:0}}
+                    // style={{paddingTop:Meteor.isCordova?8:0}}
                     showMenuIconButton={true}
                     iconElementRight={MenuButton}
                     onLeftIconButtonClick={()=> this.setState({open:true})}
