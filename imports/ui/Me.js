@@ -1,74 +1,33 @@
 import React,{ Component } from 'react';
-import {List, ListItem} from 'material-ui/List';
-import ActionInfo from 'material-ui/svg-icons/action/info';
-import Divider from 'material-ui/Divider';
-import Subheader from 'material-ui/Subheader';
-import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import ActionAssignment from 'material-ui/svg-icons/action/assignment';
-import {blue500, yellow600} from 'material-ui/styles/colors';
-import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
-import AccountUI from './AccountUI.js';
+// import AccountUI from './AccountUI.js';
 
 export default class Me extends Component {
     render() {
         return (
-            <div>
-                <List>
-                    <Subheader inset={true}>Folders</Subheader>
-                    <ListItem
-                        leftAvatar={<Avatar icon={<FileFolder />} />}
-                        rightIcon={<AccountUI />}
-                        primaryText="Photos"
-                        secondaryText="Jan 9, 2014"
-                    />
-                    <ListItem
-                        leftAvatar={<Avatar icon={<FileFolder />} />}
-                        rightIcon={<ActionInfo />}
-                        primaryText="Recipes"
-                        secondaryText="Jan 17, 2014"
-                    />
-                    <ListItem
-                        leftAvatar={<Avatar icon={<FileFolder />} />}
-                        rightIcon={<ActionInfo />}
-                        primaryText="Work"
-                        secondaryText="Jan 28, 2014"
-                    />
-                </List>
-                <Divider inset={true} />
-                <List>
-                    <Subheader inset={true}>Files</Subheader>
-                    <ListItem
-                        leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
-                        rightIcon={<ActionInfo />}
-                        primaryText="Vacation itinerary"
-                        secondaryText="Jan 20, 2014"
-                    />
-                    <ListItem
-                        leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />}
-                        rightIcon={<ActionInfo />}
-                        primaryText="Kitchen remodel"
-                        secondaryText="Jan 10, 2014"
-                    />
-                </List>
-                <Divider inset={true} />
-                <List>
-                    <Subheader inset={true}>Files</Subheader>
-                    <ListItem
-                        leftAvatar={<Avatar icon={<ActionAssignment />} backgroundColor={blue500} />}
-                        rightIcon={<ActionInfo />}
-                        primaryText="Vacation itinerary"
-                        secondaryText="Jan 20, 2014"
-                    />
-                    <ListItem
-                        leftAvatar={<Avatar icon={<EditorInsertChart />} backgroundColor={yellow600} />}
-                        rightIcon={<ActionInfo />}
-                        primaryText="Kitchen remodel"
-                        secondaryText="Jan 10, 2014"
-                    />
-                </List>
-            </div>
+            <Card>
+                <CardHeader
+                title="URL Avatar"
+                subtitle="Subtitle"
+                avatar="images/avatar3.png"
+                />
+                <CardMedia overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}>
+                    <img src="images/banner.gif" alt="" />
+                </CardMedia>
+                <CardTitle title="Card title" subtitle="Card subtitle" />
+                <CardText>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                </CardText>
+                <CardActions>
+                    <FlatButton label="button1" />
+                    <FlatButton label="button2" />
+                </CardActions>
+            </Card>
         );
     }
 }

@@ -5,6 +5,10 @@ import { Tasks } from '../api/tasks.js';
 import {List, ListItem} from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 
+import Badge from 'material-ui/Badge';
+import IconButton from 'material-ui/IconButton';
+import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
+
 class TaskList extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +19,11 @@ class TaskList extends Component {
                 <form onSubmit={this.submitHandler.bind(this)}>
                     <input type='text' ref='textInput' placeholder='请输入内容' />
                 </form>
+
+                <Badge badgeContent={4} primary={true} badgeStyle={{top: 15, right: 15}}>
+                    <IconButton tooltip="通知"><NotificationsIcon /></IconButton>
+                </Badge>
+
                 <List>
                     {this.renderTasks()}
                 </List>

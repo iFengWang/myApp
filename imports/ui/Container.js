@@ -1,21 +1,44 @@
 import React,{ Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 
+// 底部切换 **********************************
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+// import IconHome from 'material-ui/svg-icons/communication/business';
+// import IconChat from 'material-ui/svg-icons/communication/chat';
+// import IconOa from 'material-ui/svg-icons/communication/call';
+// import IconMe from 'material-ui/svg-icons/communication/email';
+
+import FontIcon from 'material-ui/FontIcon';
+const IconHome = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>business</FontIcon>;
+const IconChat = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>chat</FontIcon>;
+const IconOa = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>call</FontIcon>;
+const IconMe = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>email</FontIcon>;
+
+// 下拉菜单 **********************************
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+const MenuButton = 
+<IconMenu 
+iconButtonElement={<IconButton><MoreVertIcon /></IconButton>} 
+anchorOrigin={{horizontal: 'right', vertical: 'top'}} 
+targetOrigin={{horizontal: 'right', vertical: 'bottom'}}>
+    <MenuItem primaryText="Refresh" />
+    <MenuItem primaryText="Send feedback" />
+    <MenuItem primaryText="Settings" />
+    <MenuItem primaryText="Help" />
+    <MenuItem primaryText="Sign out" />
+</IconMenu>;
+
+// 左侧边栏 **********************************
+import Drawer from 'material-ui/Drawer';
+
+// 主题相关 **********************************
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {cyan500,cyan700,grey100,grey400,grey500,pinkA100,pinkA200,pink500, yellow100, lime100, lime500} from 'material-ui/styles/colors';
-
-import AppBar from 'material-ui/AppBar';
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-
-import IconHome from 'material-ui/svg-icons/communication/business';
-import IconChat from 'material-ui/svg-icons/communication/chat';
-import IconOa from 'material-ui/svg-icons/communication/call';
-import IconMe from 'material-ui/svg-icons/communication/email';
-
-// import FontIcon from 'material-ui/FontIcon';
-// const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-// const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
 
 const muiTheme = getMuiTheme({
     palette: {
@@ -29,7 +52,7 @@ const muiTheme = getMuiTheme({
         canvasColor: pinkA100,
     },
     appBar: {
-      height: 64,
+      height: Meteor.isCordova ? 64 : 44,
     },
     bottomNavigation: {
         backgroundColor: pinkA200,
@@ -45,41 +68,56 @@ const muiTheme = getMuiTheme({
 export default class Container extends Component {
     constructor(props) {
         super(props);
-        this.state = {selectedIndex:0}
+        this.state = {
+            selectedIndex:0,
+            open:false
+        }
     }
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100}}>
+                <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100, overflow:'hidden'}}>
+                    
+                    <Drawer
+                    docked={false}
+                    width={200}
+                    open={this.state.open}
+                    onRequestChange={(open) => this.setState({open})}
+                    >
+                        <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
+                        <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
+                    </Drawer>
+
                     <AppBar 
                     title={this.props.title} 
                     titleStyle={{margin:0,textAlign:'center'}}
-                    showMenuIconButton={false}
-                    // iconElementRight={<AccountUI />}
+                    showMenuIconButton={true}
+                    iconElementRight={MenuButton}
+                    onLeftIconButtonClick={()=> this.setState({open:true})}
                     zDepth={2}
                     />
-                    <div style={{height:550,overflow:'auto'}}>
+                    <div style={{height:550,width:'100%',overflow:'auto',display:'flex', flexDirection:'column', alignItems:'center'}}>
                         {this.props.contents}
                     </div>
                     <BottomNavigation selectedIndex={this.selectedIndex} zDepth={2}>
                         <BottomNavigationItem
                             label="首页"
-                            icon={<IconHome />}
+                            icon={IconHome}
                             onClick={() => this.select(0)}
                         />
                         <BottomNavigationItem
                             label="聊天"
-                            icon={<IconChat />}
+                            icon={IconChat}
                             onClick={() => this.select(1)}
                         />
                         <BottomNavigationItem
                             label="OA"
-                            icon={<IconOa />}
+                            icon={IconOa}
                             onClick={() => this.select(2)}
                         />
                         <BottomNavigationItem
                             label="我的"
-                            icon={<IconMe />}
+                            icon={IconMe}
                             onClick={() => this.select(3)}
                         />
                     </BottomNavigation>
