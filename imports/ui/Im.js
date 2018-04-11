@@ -7,12 +7,12 @@ import Dialog from 'material-ui/Dialog';
 
 import { withTracker } from 'meteor/react-meteor-data';
 import '../api/users.js';
-import { pink100, cyanA200, grey500 } from 'material-ui/styles/colors';
+import { grey500 } from 'material-ui/styles/colors';
 
 class Im extends Component {
     constructor(props) {
         super(props);
-        this.state = {openDialog:true};
+        this.state = {openDialog:false};
     }
 
     renderUsers() {
