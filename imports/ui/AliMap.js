@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Map } from 'react-amap';
 
-export default class BaiduMap extends Component {
+export default class AliMap extends Component {
     render() {
         return (
             <Map />

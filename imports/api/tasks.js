@@ -12,5 +12,6 @@ if (Meteor.isServer) {
 Meteor.methods({
     'tasks.insert'(text) {
         Tasks.insert({text:text, createAt:new Date()});
+        console.log('server ..... client .....都执行了');
     }
 });
