@@ -14,7 +14,7 @@ const IconChat = <FontIcon className="material-icons" style={{marginRight:15}} c
 const IconOa = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>call</FontIcon>;
 const IconMe = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>email</FontIcon>;
 
-import Paper from 'material-ui/Paper';
+// import Paper from 'material-ui/Paper';
 
 // 下拉菜单 **********************************
 import IconMenu from 'material-ui/IconMenu';
@@ -78,7 +78,7 @@ export default class Container extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <Paper style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100, overflow:'hidden'}} zDepth={1}>
+                <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100, overflow:'hidden'}} zDepth={0}>
                     <Drawer
                     docked={false}
                     width={200}
@@ -96,9 +96,9 @@ export default class Container extends Component {
                     iconElementRight={MenuButton}
                     onLeftIconButtonClick={()=> this.setState({open:true})}
                     zDepth={2} />
-                    <Paper style={{height:550,width:'100%',overflow:'auto',display:'flex', flexDirection:'column', alignItems:'center'}}>
+                    <div style={{height:550, overflow:'auto',display:'flex', flexDirection:'column', alignItems:'center'}}>
                         {this.props.contents}
-                    </Paper>
+                    </div>
                     <BottomNavigation selectedIndex={this.selectedIndex} zDepth={2}>
                         <BottomNavigationItem
                             label="首页"
@@ -121,7 +121,7 @@ export default class Container extends Component {
                             onClick={() => this.select(3)}
                         />
                     </BottomNavigation>
-                </Paper>
+                </div>
             </MuiThemeProvider>
         );
     }

@@ -1,15 +1,15 @@
 import React from 'react';
-import Container from '../imports/ui/Container.js';
-import Home from '../imports/ui/Home.js';
-import Im from '../imports/ui/Im.js';
-import Oa from '../imports/ui/Oa.js';
-import Me from '../imports/ui/Me.js';
-import NotFound from '../imports/ui/NotFound.js';
-import AliMap from '../imports/ui/AliMap.js';
+import Container from '../../ui/Container.js';
+import Home from '../../ui/Home.js';
+import Im from '../../ui/Im.js';
+import Oa from '../../ui/Oa.js';
+import Me from '../../ui/Me.js';
+import NotFound from '../../ui/NotFound.js';
+import AliMap from '../../ui/AliMap.js';
 
 FlowRouter.route('/',{
     action:function(param,queryParam) {
-        // FlowRouter.redirect('/home');
+        FlowRouter.redirect('/home');
     }
 });
 

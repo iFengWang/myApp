@@ -11,7 +11,8 @@
 // Meteor.startup(() => {
 //   render(<App />, document.getElementById('render-target'));
 // });
-import '../imports/startup/accounts-config.js';
+
+import '../imports/startup/client';
 
 // Track.autoRun(function() {
 //     console.log('1........'+Session.get('abc'));
