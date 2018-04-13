@@ -125,9 +125,9 @@ export default class Container extends Component {
             </MuiThemeProvider>
         );
     }
-    select = (index) => {
+    select(index) {
         this.setState({selectedIndex: index});
-        switch(this.state.selectedIndex) {
+        switch(index) {
             case 0:
                 FlowRouter.go('/home');
                 break;

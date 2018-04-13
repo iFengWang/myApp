@@ -12,3 +12,7 @@
 //   render(<App />, document.getElementById('render-target'));
 // });
 import '../imports/startup/accounts-config.js';
+
+// Track.autoRun(function() {
+//     console.log('1........'+Session.get('abc'));
+// });
