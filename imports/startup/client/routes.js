@@ -7,11 +7,37 @@ import Me from '../../ui/Me.js';
 import NotFound from '../../ui/NotFound.js';
 import AliMap from '../../ui/AliMap.js';
 
+import RegisterUI from '../../ui/account/register.js';
+// import AccountUI from '../../ui/AccountUI.js';
+
 FlowRouter.route('/',{
     action:function(param,queryParam) {
         FlowRouter.redirect('/home');
     }
 });
+
+// account page **************************************
+const account = FlowRouter.group({
+    prefix: '/account',
+    name: 'account',
+    triggersEnter: [function(context, redirect) {
+        console.log('进入帐户...组....');
+    }]
+  });
+
+// account.route('/login',{
+//     action:function(param,queryParam) {
+//       ReactLayout.render(Container, {title:'登录',contents:<AccountUI />});
+//     },
+//     triggersEnter:[]
+// });
+
+account.route('/register',{
+      action:function(param,queryParam) {
+        ReactLayout.render(Container, {title:'注册',contents:<RegisterUI />});
+      },
+      triggersEnter:[]
+  });
 
 // home page **************************************
 const home = FlowRouter.group({

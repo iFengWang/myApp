@@ -7,11 +7,11 @@ export default class AliMap extends Component {
             <Map />
         );
     }
-    onChange(event) {
-        this.refs.location.search(event.target.value);
-    }
-    onSelect(point) {
+    // onChange(event) {
+    //     this.refs.location.search(event.target.value);
+    // }
+    // onSelect(point) {
     // point.lng
     // point.lat
-    }
+    // }
 }

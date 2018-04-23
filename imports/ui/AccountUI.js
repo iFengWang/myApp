@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Template } from 'meteor/templating';
-import { Blaze } from 'meteor/blaze';
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+// import { Template } from 'meteor/templating';
+// import { Blaze } from 'meteor/blaze';
  
-export default class AccountUI extends Component {
-  componentDidMount() {
-    // Use Meteor Blaze to render login buttons
-    this.view = Blaze.render(Template.loginButtons,
-      ReactDOM.findDOMNode(this.refs.container));
-  }
-  componentWillUnmount() {
-    // Clean up Blaze view
-    Blaze.remove(this.view);
-  }
-  render() {
-    // Just render a placeholder container that will be filled in
-    return <span ref="container" />;
-  }
-}
+// export default class AccountUI extends Component {
+//   componentDidMount() {
+//     this.view = Blaze.render(Template.loginButtons,
+//       ReactDOM.findDOMNode(this.refs.container));
+//   }
+//   componentWillUnmount() {
+//     Blaze.remove(this.view);
+//   }
+//   render() {
+//     return <div ref="container" 
+//     style={{width:320,height:300,backgroundColor:'#00FF00',marginTop:64}}></div>;
+//   }
+// }

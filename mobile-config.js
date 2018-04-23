@@ -29,12 +29,12 @@ App.info({
   
   // Set PhoneGap/Cordova preferences.
   App.setPreference('BackgroundColor', '0xff0000ff');
-  App.setPreference('HideKeyboardFormAccessoryBar', true);
   App.setPreference('Orientation', 'portrait');
-//   App.setPreference('Orientation', 'all', 'ios');
+  App.setPreference('Orientation', 'all', 'ios');
+
+  App.setPreference('HideKeyboardFormAccessoryBar', true);
   App.setPreference('WebAppStartupTimeout', 30000);
   App.setPreference('EnableViewportScale', true);
-
   App.setPreference('StatusBarOverlaysWebView', true);
   
   // Pass preferences for a particular PhoneGap/Cordova plugin.

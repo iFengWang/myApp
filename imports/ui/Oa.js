@@ -14,7 +14,46 @@ export default class Oa extends Component {
         return (
             <div>
                 <div>
-                    <RaisedButton label="地图" secondary={true} onClick={() => FlowRouter.go('/oa/map')}/>
+                    <RaisedButton 
+                    label="地图" 
+                    secondary={true} 
+                    style={{margin:5}}
+                    onClick={() => FlowRouter.go('/oa/map')}/>
+
+                    <RaisedButton 
+                    label="自定义注册" 
+                    secondary={true} 
+                    style={{margin:5}}
+                    onClick={() => FlowRouter.go('/account/register')}/>
+
+                    <RaisedButton 
+                    label="添加邮箱" 
+                    secondary={true} 
+                    style={{margin:5}}
+                    onClick={() => {
+                        Meteor.call('mail.action','add');
+                    }}/>
+                    <RaisedButton 
+                    label="删除邮箱" 
+                    secondary={true} 
+                    style={{margin:5}}
+                    onClick={() => {
+                        Meteor.call('mail.action','remove');
+                    }}/>
+                    <RaisedButton 
+                    label="发送验证邮件" 
+                    secondary={true} 
+                    style={{margin:5}}
+                    onClick={() => {
+                        Meteor.call('mail.action','sendVerify');
+                    }}/>
+                    <RaisedButton 
+                    label="发送普通邮件" 
+                    secondary={true} 
+                    style={{margin:5}}
+                    onClick={() => {
+                        Meteor.call('mail.action','sendMail');
+                    }}/>
                 </div>
 
                 <div>
@@ -33,10 +72,10 @@ export default class Oa extends Component {
                             Swipe to see the next slide.<br />
                         </div>
                         <div>
-                            slide n°2
+                            第二个选项卡
                         </div>
                         <div>
-                            slide n°3
+                            第三个选项卡
                         </div>
                     </SwipeableViews>
                 </div>

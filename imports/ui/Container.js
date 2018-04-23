@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import AppBar from 'material-ui/AppBar';
+import { T } from '../i18n';
 
 // 底部切换 **********************************
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
@@ -67,6 +68,24 @@ const muiTheme = getMuiTheme({
     // spacing:5,
 });
 
+const styles = {
+    container:{
+        display:'flex', 
+        flexDirection:'column', 
+        justifyContent:'center', 
+        alignItems:'center', 
+        backgroundColor:yellow100, 
+        overflow:'hidden'
+    },
+    content:{
+        height:550, 
+        overflow:'auto',
+        display:'flex', 
+        flexDirection:'column', 
+        alignItems:'center'
+    }
+}
+
 export default class Container extends Component {
     constructor(props) {
         super(props);
@@ -78,7 +97,7 @@ export default class Container extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', backgroundColor:yellow100, overflow:'hidden'}} zDepth={0}>
+                <div style={styles.container} zDepth={0}>
                     <Drawer
                     docked={false}
                     width={200}
@@ -96,27 +115,27 @@ export default class Container extends Component {
                     iconElementRight={MenuButton}
                     onLeftIconButtonClick={()=> this.setState({open:true})}
                     zDepth={2} />
-                    <div style={{height:550, overflow:'auto',display:'flex', flexDirection:'column', alignItems:'center'}}>
+                    <div style={styles.content}>
                         {this.props.contents}
                     </div>
                     <BottomNavigation selectedIndex={this.selectedIndex} zDepth={2}>
                         <BottomNavigationItem
-                            label="首页"
+                            label={<T>home</T>}
                             icon={IconHome}
                             onClick={() => this.select(0)}
                         />
                         <BottomNavigationItem
-                            label="聊天"
+                            label={<T>chat</T>}
                             icon={IconChat}
                             onClick={() => this.select(1)}
                         />
                         <BottomNavigationItem
-                            label="OA"
+                            label={<T>office</T>}
                             icon={IconOa}
                             onClick={() => this.select(2)}
                         />
                         <BottomNavigationItem
-                            label="我的"
+                            label={<T>me</T>}
                             icon={IconMe}
                             onClick={() => this.select(3)}
                         />
