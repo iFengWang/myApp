@@ -54,6 +54,7 @@ export default class Oa extends Component {
                     onClick={() => {
                         Meteor.call('mail.action','sendMail');
                     }}/>
+
                 </div>
 
                 <div>

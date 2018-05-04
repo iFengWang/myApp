@@ -1,7 +1,7 @@
 // Fill the DB with example data on startup
 
 import { Meteor } from 'meteor/meteor';
-import { Tasks } from '../../api/tasks.js';
+// import { Tasks } from '../../api/tasks.js';
 import { Accounts } from 'meteor/accounts-base';
 
 Meteor.startup(() => {

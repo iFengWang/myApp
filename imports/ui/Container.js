@@ -2,20 +2,25 @@ import React,{ Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import { T } from '../i18n';
 
+import { Photos } from '../api/photos';
+
 // 底部切换 **********************************
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-// import IconHome from 'material-ui/svg-icons/communication/business';
-// import IconChat from 'material-ui/svg-icons/communication/chat';
-// import IconOa from 'material-ui/svg-icons/communication/call';
-// import IconMe from 'material-ui/svg-icons/communication/email';
+
+// import Home from 'material-ui/svg-icons/communication/business';
+// import Chat from 'material-ui/svg-icons/communication/chat';
+// import Oa from 'material-ui/svg-icons/communication/call';
+// import Me from 'material-ui/svg-icons/communication/email';
+// const IconHome = <Home />;
+// const IconChat = <Chat />;
+// const IconOa = <Oa />;
+// const IconMe = <Me />;
 
 import FontIcon from 'material-ui/FontIcon';
-const IconHome = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>business</FontIcon>;
-const IconChat = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>chat</FontIcon>;
-const IconOa = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>call</FontIcon>;
-const IconMe = <FontIcon className="material-icons" style={{marginRight:15}} color={lime100} hoverColor={pink500}>email</FontIcon>;
-
-// import Paper from 'material-ui/Paper';
+const IconHome = <FontIcon className="material-icons">business</FontIcon>;
+const IconChat = <FontIcon className="material-icons">chat</FontIcon>;
+const IconOa = <FontIcon className="material-icons">call</FontIcon>;
+const IconMe = <FontIcon className="material-icons">email</FontIcon>;
 
 // 下拉菜单 **********************************
 import IconMenu from 'material-ui/IconMenu';
@@ -27,7 +32,20 @@ const MenuButton =
 iconButtonElement={<IconButton><MoreVertIcon /></IconButton>} 
 anchorOrigin={{horizontal: 'right', vertical: 'top'}} 
 targetOrigin={{horizontal: 'right', vertical: 'bottom'}}>
-    <MenuItem primaryText="Refresh" />
+    <MenuItem primaryText="拍照片" onClick={(event)=>{
+        MeteorCamera.getPicture({width:window.screen.width, height:window.screen.height,quality:100}, function(error,data){
+            if(!error) {
+                Meteor.call('photos.insert',{
+                    title:'haha',
+                    img:data,
+                    author:'xiaofeng',
+                    createAt:new Date()
+                });
+            } else {
+                console.log('error......'+error);
+            }
+        });
+    }}/>
     <MenuItem primaryText="Send feedback" />
     <MenuItem primaryText="Settings" />
     <MenuItem primaryText="Help" />
@@ -78,11 +96,12 @@ const styles = {
         overflow:'hidden'
     },
     content:{
-        height:550, 
-        overflow:'auto',
         display:'flex', 
         flexDirection:'column', 
-        alignItems:'center'
+        justifyContent:'flexStart', 
+        alignItems:'center', 
+        overflow:'auto',
+        height:(Meteor.isCordova?window.screen.height:window.innerHeight)-(Meteor.isCordova?64:44)-49
     }
 }
 
@@ -97,7 +116,7 @@ export default class Container extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={styles.container} zDepth={0}>
+            <div style={styles.container} zDepth={0}>
                     <Drawer
                     docked={false}
                     width={200}
@@ -109,8 +128,8 @@ export default class Container extends Component {
 
                     <AppBar 
                     title={this.props.title} 
-                    titleStyle={{margin:0,textAlign:'center'}}
-                    // style={{paddingTop:Meteor.isCordova?8:0}}
+                    titleStyle={{textAlign:'center'}}
+                    style={{paddingTop:Meteor.isCordova?8:0,height:Meteor.isCordova?64:44}}
                     showMenuIconButton={true}
                     iconElementRight={MenuButton}
                     onLeftIconButtonClick={()=> this.setState({open:true})}
@@ -118,7 +137,7 @@ export default class Container extends Component {
                     <div style={styles.content}>
                         {this.props.contents}
                     </div>
-                    <BottomNavigation selectedIndex={this.selectedIndex} zDepth={2}>
+                    <BottomNavigation selectedIndex={this.state.selectedIndex} zDepth={2} style={{height:49}}>
                         <BottomNavigationItem
                             label={<T>home</T>}
                             icon={IconHome}

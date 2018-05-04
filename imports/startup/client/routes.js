@@ -12,6 +12,7 @@ import RegisterUI from '../../ui/account/register.js';
 
 FlowRouter.route('/',{
     action:function(param,queryParam) {
+        console.log('进入根....');
         FlowRouter.redirect('/home');
     }
 });
