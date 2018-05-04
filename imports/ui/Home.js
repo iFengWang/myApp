@@ -104,7 +104,7 @@ const styles = {
 export default class Home extends Component {
     render() {
         return (
-            <GridList cellHeight={180} style={styles.gridList}>
+            <GridList cellHeight={180} style={styles.gridList} cols={2}>
             {/* <Subheader>December</Subheader> */}
             {tilesData.map((tile) => (
                 <GridTile
