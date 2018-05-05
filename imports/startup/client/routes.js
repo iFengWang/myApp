@@ -6,6 +6,7 @@ import Oa from '../../ui/Oa.js';
 import Me from '../../ui/Me.js';
 import NotFound from '../../ui/NotFound.js';
 import AliMap from '../../ui/AliMap.js';
+import ChatList from '../../ui/im/ChatList.js';
 
 import RegisterUI from '../../ui/account/register.js';
 // import AccountUI from '../../ui/AccountUI.js';
@@ -57,22 +58,22 @@ const home = FlowRouter.group({
   });
 
   // im page **************************************
-const im = FlowRouter.group({
-    prefix: '/im',
-    name: 'im',
-    triggersEnter: [function(context, redirect) {
-        console.log('进入IM...组....');
-    }]
-  });
+    const im = FlowRouter.group({
+        prefix: '/im',
+        name: 'im',
+        triggersEnter: [function(context, redirect) {
+            console.log('进入IM...组....');
+        }]
+    });
 
-  im.route('/',{
-      action:function(param,queryParam) {
-        ReactLayout.render(Container, {title:'Im',contents:<Im />});
-      },
-      triggersEnter:[]
-  });
+    im.route('/',{
+        action:function(param,queryParam) {
+            ReactLayout.render(Container, {title:'Im',contents:<ChatList />});
+        },
+        triggersEnter:[]
+    });
 
-  // im page **************************************
+  // oa page **************************************
 const oa = FlowRouter.group({
     prefix: '/oa',
     name: 'oa',

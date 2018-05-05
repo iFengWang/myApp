@@ -96,6 +96,7 @@ const styles = {
         overflow:'hidden'
     },
     content:{
+        width:window.innerWidth,
         display:'flex', 
         flexDirection:'column', 
         justifyContent:'flexStart', 
