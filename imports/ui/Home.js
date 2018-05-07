@@ -4,30 +4,34 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Photos } from '../api/photos';
+import { Photos } from '../api/photos.js';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+
+let pageCount = 3;
 
 const styles = {
     gridList: {
       overflowY: 'auto',
       display:'flex',
       justifyContent:'flexStart',
-      width: window.innerWidth,
-    //   backgroundColor:'#FF0000',
-      padding:5
+      width: window.innerWidth
     },
     gridTile: {
         border:'dotted 1px #FF0000',
         overflow:'hidden',
-        borderRadius:5,
+        borderRadius:5
     }
   };
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {dialogParam:null};
+        this.state = {
+            dialogParam:null,
+            isLoading:false
+        };
     }
     render() {
         return (
@@ -38,7 +42,7 @@ class Home extends Component {
                 {/* <Subheader>December</Subheader> */}
                 {this.props.photoList.map((photo,index,ary) => (
                     <GridTile
-                    key={photo.img}
+                    key={photo._id}
                     padding={1}
                     title={photo.title}
                     subtitle={<span>by <b>{photo.author}</b></span>}
@@ -47,9 +51,42 @@ class Home extends Component {
                     style={styles.gridTile}
                     onClick={() => this.setState({dialogParam:photo._id})}
                     >
-                    <img src={photo.img} />
+                        <img src={photo.img} />
                     </GridTile>
                 ))}
+                    <GridTile
+                    key={'more'}
+                    padding={1}
+                    title={this.state.isLoading?null:'加载更多'}
+                    titleStyle={{textAlign:'center',marginTop:5}}
+                    // subtitle={<span>by <b>{photo.author}</b></span>}
+                    // actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                    cols={2}
+                    style={{height:40}}
+                    onClick={() => {
+                        pageCount += 3;
+                        const subscribe = Meteor.subscribe('Photos',pageCount);
+                        if(subscribe.ready) {
+                            this.setState({isLoading:false});
+                        } else {
+                            this.setState({isLoading:true});
+                        }
+                    }}
+                    >
+                        {this.state.isLoading?
+                            <RefreshIndicator
+                            size={40}
+                            left={window.innerWidth/2-20}
+                            top={0}
+                            percentage={100}
+                            // color="red"
+                            loadingColor="red"
+                            status="loading"
+                            style={{display: 'inline-block',position: 'relative',alignContent:'center'}}
+                            />:null
+                        }
+                        
+                    </GridTile>
                 </GridList>
                 {this.state.dialogParam?this.renderDialog():null}
             </div>
@@ -90,8 +127,8 @@ class Home extends Component {
 }
 
 export default withTracker(() => {
-    Meteor.subscribe('Photos');
+    Meteor.subscribe('Photos',pageCount);
     return {
-      photoList: Photos.find({},{sort:{createAt:-1}}).fetch(),
+      photoList: Photos.find({}).fetch(),
     };
   })(Home);

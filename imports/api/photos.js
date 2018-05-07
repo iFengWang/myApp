@@ -3,8 +3,8 @@ import { Mongo } from 'meteor/mongo';
 
 export const Photos = new Mongo.Collection('photos');
 if(Meteor.isServer) {
-    Meteor.publish('Photos',function(){
-        return Photos.find({});
+    Meteor.publish('Photos',function(num){
+        return Photos.find({},{limit:num,sort:{createAt:-1}});
     });
 }
 

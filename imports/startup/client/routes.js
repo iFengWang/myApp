@@ -7,6 +7,7 @@ import Me from '../../ui/Me.js';
 import NotFound from '../../ui/NotFound.js';
 import AliMap from '../../ui/AliMap.js';
 import ChatList from '../../ui/im/ChatList.js';
+import Chat from '../../ui/im/Chat.js';
 
 import RegisterUI from '../../ui/account/register.js';
 // import AccountUI from '../../ui/AccountUI.js';
@@ -69,6 +70,13 @@ const home = FlowRouter.group({
     im.route('/',{
         action:function(param,queryParam) {
             ReactLayout.render(Container, {title:'Im',contents:<ChatList />});
+        },
+        triggersEnter:[]
+    });
+    im.route('/chat/:groupId',{
+        action:function(param,queryParam) {
+            // console.log(JSON.stringify(param)+'.....'+JSON.stringify(queryParam));
+            ReactLayout.render(Container, {title:queryParam.title,contents:<Chat groupId={param.groupId} />});
         },
         triggersEnter:[]
     });

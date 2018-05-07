@@ -13,3 +13,78 @@ body {
     -webkit-overflow-scrolling:touch;
 }
 
+/*汽泡-----------------------------------*/
+.triangle-right {
+    background: -moz-linear-gradient(#f70b03, #fcae06) repeat scroll 0 0 transparent;
+    background:-webkit-gradient(linear, 0 0, 45 100%, from(#f70b03), to(#fcae06));
+    border-radius: 10px;
+    position:relative;
+    top:5px;
+    right:10px;
+    color:#FFF;
+    line-height:25px;
+    width:205px;
+    padding:10px;
+
+    /*阴影1
+     webkit-box-shadow: 3px 3px 3px;  
+       -moz-box-shadow: 3px 3px 3px;  
+       box-shadow: 3px 3px 3px; 
+     */
+     
+     /*阴影2*/
+    //    -webkit-box-shadow:0 0 10px #0CC;  
+    //    -moz-box-shadow:0 0 10px #0CC;  
+    //    box-shadow:0 0 10px #666; 
+      
+     
+     /*阴影3
+       -webkit-box-shadow:0 0 10px rgba(0, 204, 204, .5);  
+       -moz-box-shadow:0 0 10px rgba(0, 204, 204, .5);  
+       box-shadow:0 0 10px rgba(0, 204, 204, .5);  
+     */ 
+     
+     /*阴影4
+     box-shadow:0 0 10px 20px red,  
+     0 0 10px 5px black;
+     */
+ }
+ .triangle-right:after {
+     border-color: transparent transparent transparent #f5331d;
+     border-style: solid;
+     /* border-width: 20px;*/
+     border-width: 10px;
+     content: "";
+     display: block;
+     right: -20px;
+     top: 10px;
+     position: absolute;
+ }
+
+
+
+ .triangle-left {
+    background: -moz-linear-gradient(#dfdbdb, #292929) repeat scroll 0 0 transparent;
+    background:-webkit-gradient(linear, 0 0, 45 100%, from(#dfdbdb), to(#292929));
+    border-radius: 10px;
+    position:relative;
+    top:5px;
+    left:10px;
+    color:#FFF;
+    line-height:25px;
+    width:205px;
+    padding:10px;
+ }
+ .triangle-left:after {
+     border-color: transparent #b9b6b7 transparent transparent;
+     border-style: solid;
+     /* border-width: 20px;*/
+     border-width: 10px;
+     content: "";
+     display: block;
+     left: -20px;
+     top: 10px;
+     position: absolute;
+     
+ }
+

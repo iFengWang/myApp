@@ -1,8 +1,11 @@
 import React,{ Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import { T } from '../i18n';
-
 import { Photos } from '../api/photos';
+import Dialog from 'material-ui/Dialog';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import AutoComplete from 'material-ui/AutoComplete';
 
 // 底部切换 **********************************
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
@@ -27,30 +30,6 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-const MenuButton = 
-<IconMenu 
-iconButtonElement={<IconButton><MoreVertIcon /></IconButton>} 
-anchorOrigin={{horizontal: 'right', vertical: 'top'}} 
-targetOrigin={{horizontal: 'right', vertical: 'bottom'}}>
-    <MenuItem primaryText="拍照片" onClick={(event)=>{
-        MeteorCamera.getPicture({width:window.screen.width, height:window.screen.height,quality:100}, function(error,data){
-            if(!error) {
-                Meteor.call('photos.insert',{
-                    title:'haha',
-                    img:data,
-                    author:'xiaofeng',
-                    createAt:new Date()
-                });
-            } else {
-                console.log('error......'+error);
-            }
-        });
-    }}/>
-    <MenuItem primaryText="Send feedback" />
-    <MenuItem primaryText="Settings" />
-    <MenuItem primaryText="Help" />
-    <MenuItem primaryText="Sign out" />
-</IconMenu>;
 
 // 左侧边栏 **********************************
 import Drawer from 'material-ui/Drawer';
@@ -92,7 +71,7 @@ const styles = {
         flexDirection:'column', 
         justifyContent:'center', 
         alignItems:'center', 
-        backgroundColor:yellow100, 
+        backgroundColor:grey100, 
         overflow:'hidden'
     },
     content:{
@@ -101,17 +80,28 @@ const styles = {
         flexDirection:'column', 
         justifyContent:'flexStart', 
         alignItems:'center', 
-        overflow:'auto',
+        overflow:'auto', 
         height:(Meteor.isCordova?window.screen.height:window.innerHeight)-(Meteor.isCordova?64:44)-49
     }
 }
+const iconArray = [
+    'images/avatar1.png', 
+    'images/avatar2.png', 
+    'images/avatar3.png', 
+    'images/avatar4.png',
+    'images/avatar5.png',
+    'images/avatar6.png',
+    'images/avatar7.png'];
 
 export default class Container extends Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedIndex:0,
-            open:false
+            open:false,
+            groupDialog:false,
+            groupIcon:null,
+            groupName:null
         }
     }
     render() {
@@ -132,7 +122,7 @@ export default class Container extends Component {
                     titleStyle={{textAlign:'center'}}
                     style={{paddingTop:Meteor.isCordova?8:0,height:Meteor.isCordova?64:44}}
                     showMenuIconButton={true}
-                    iconElementRight={MenuButton}
+                    iconElementRight={this.MenuButton()}
                     onLeftIconButtonClick={()=> this.setState({open:true})}
                     zDepth={2} />
                     <div style={styles.content}>
@@ -160,8 +150,35 @@ export default class Container extends Component {
                             onClick={() => this.select(3)}
                         />
                     </BottomNavigation>
+                    {this.state.groupDialog?this.renderDialog():null}
                 </div>
             </MuiThemeProvider>
+        );
+    }
+    MenuButton() {
+        return (
+            <IconMenu 
+                iconButtonElement={<IconButton><MoreVertIcon /></IconButton>} 
+                anchorOrigin={{horizontal: 'right', vertical: 'top'}} 
+                targetOrigin={{horizontal: 'right', vertical: 'bottom'}}>
+                <MenuItem primaryText="拍照片" onClick={(event)=>{
+                    MeteorCamera.getPicture({width:window.screen.width, height:window.screen.height,quality:100}, function(error,data){
+                        if(!error) {
+                            Meteor.call('photos.insert',{
+                                title:'haha',
+                                img:data,
+                                author:'xiaofeng',
+                                createAt:new Date()
+                            });
+                        } else {
+                            console.log('error......'+error);
+                        }
+                    });
+                }}/>
+                <MenuItem primaryText="创建群" onClick={(event)=>{
+                    this.setState({groupDialog:true})
+                }}/>
+            </IconMenu>
         );
     }
     select(index) {
@@ -182,5 +199,50 @@ export default class Container extends Component {
             default:
                 FlowRouter.go('/home');
         }
+    }
+    renderDialog() {
+        const actions = [
+            <RaisedButton
+              label="创建"
+              primary={true}
+              style={{margin:5}}
+              onClick={()=>{
+                    Meteor.call('chatGroup.insert', this.state.groupIcon, this.state.groupName);
+                    this.setState({groupDialog:false});
+                }}
+            />,
+            <RaisedButton
+              label="取消"
+              secondary={true}
+              disabled={false}
+              style={{margin:5}}
+              disabledBackgroundColor={'#666'}
+              onClick={()=>this.setState({groupDialog:false})}
+            />,
+          ];
+        return (
+            <Dialog 
+            title="创建群组" 
+            actions={actions} 
+            modal={true} 
+            contentStyle={{borderRadius:5,overflow:'hidden',boxShadow:'0px 3px 3px #666'}}
+            autoScrollBodyContent={false}
+            open={true}>
+                <AutoComplete
+                floatingLabelText="选择一个ICON"
+                filter={AutoComplete.noFilter}
+                openOnFocus={true}
+                value={this.state.groupIcon}
+                dataSource={iconArray}
+                onUpdateInput={(searchText,dataSource,params)=>this.setState({groupIcon:searchText})}
+                />
+                <TextField 
+                hintText="群名称字数在2~5字"
+                floatingLabelText="请输入您的群名称" 
+                value={this.state.groupName}
+                onChange={(event,newValue)=>this.setState({groupName:newValue})}
+                />
+            </Dialog>
+        );
     }
 }
