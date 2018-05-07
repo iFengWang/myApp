@@ -10,10 +10,14 @@ import { withTracker } from 'meteor/react-meteor-data';
 class Chat extends Component {
     render() {
         return (
-            <div>
+            <div ref={ele => this.container=ele}>
                 <List style={{height:490,overflow:'auto'}}>
                     {this.props.chatArray.map((chat,index) => (
                         <ListItem key={index}>
+                        {false?
+                            <div style={{textAlign:'center',paddingBottom:10}}>----------2017-05-07 13:25:30----------</div>:
+                            null
+                        }
                         {Meteor.userId()===chat.sendId?
                             <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-end'}}>
                                 <div className={'triangle-right'}>
@@ -32,7 +36,6 @@ class Chat extends Component {
                                 </div>
                             </div>
                         }
-                            
                         </ListItem>
                     ))}
                 </List>
@@ -59,21 +62,32 @@ class Chat extends Component {
             </div>
         );
     }
+    componentDidMount() {
+        setTimeout(this.scrollToBottom(),2000);
+    }
+    componentDidUpdate() {
+        setTimeout(this.scrollToBottom(),2000);
+    }
+    scrollToBottom = () => {
+        let ele = this.container.childNodes[0];
+        ele.scrollTop = ele.scrollHeight;
+        // console.log('1.......',ele.scrollHeight);
+    }
     submitHandler(event) {
         event.preventDefault();
-        // const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
         Meteor.call(
             'ChatMessage.insert',
             'sendId',
-            '/images/avatar5.png',
             'sendname',
+            '/images/avatar5.png',
             '',
             '',
             '',
-            '好人一生平安，我们都有一个家，名字叫中国，兄弟姐妹都很多，景色也不错，家里盘着两条龙，长江与黄河，还有那珠穆朗玛峰是最高的山峰',
+            this.refs.textInput.input.value,
             this.props.groupId
         );
-        // ReactDOM.findDOMNode(this.refs.textInput).value = '';
+        this.refs.textInput.input.value = '';
+        setTimeout(this.scrollToBottom(),2000);
     }
 }
 
