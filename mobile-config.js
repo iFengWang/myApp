@@ -33,16 +33,24 @@ App.info({
   App.setPreference('Orientation', 'portrait', 'ios');
 
   App.setPreference('HideKeyboardFormAccessoryBar', true);
-  App.setPreference('WebAppStartupTimeout', 30000);
+  App.setPreference('WebAppStartupTimeout', 10000);
   App.setPreference('EnableViewportScale', false);
   App.setPreference('StatusBarOverlaysWebView', true);
 
-  App.setPreference('Fullscreen', false);
+  App.setPreference('Fullscreen', true);
   App.setPreference('DisallowOverscroll',true);
 
   // support for ios
   App.setPreference('Suppresses3DTouchGesture',true);
   App.setPreference('StatusBarStyle', 'lightcontent');
+  App.setPreference('BackupWebStorage','none');
+
+  App.setPreference('SplashScreen','screen');
+  App.setPreference('SplashScreenDelay',2000);
+  App.setPreference('FadeSplashScreenDuration',2000);
+  
+  App.setPreference('SplashScreen','screen');
+  App.setPreference('SplashScreen','screen');
   
   // Pass preferences for a particular PhoneGap/Cordova plugin.
   App.configurePlugin('com.phonegap.plugins.facebookconnect', {

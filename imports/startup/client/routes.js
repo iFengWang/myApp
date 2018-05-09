@@ -1,7 +1,6 @@
 import React from 'react';
 import Container from '../../ui/Container.js';
 import Home from '../../ui/Home.js';
-import Im from '../../ui/Im.js';
 import Oa from '../../ui/Oa.js';
 import Me from '../../ui/Me.js';
 import NotFound from '../../ui/NotFound.js';
@@ -76,7 +75,7 @@ const home = FlowRouter.group({
     im.route('/chat/:groupId',{
         action:function(param,queryParam) {
             // console.log(JSON.stringify(param)+'.....'+JSON.stringify(queryParam));
-            ReactLayout.render(Container, {title:queryParam.title,contents:<Chat groupId={param.groupId} />});
+            ReactLayout.render(Container, {title:queryParam.title,contents:<Chat groupId={param.groupId} title={queryParam.title} />});
         },
         triggersEnter:[]
     });

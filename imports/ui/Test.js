@@ -15,7 +15,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import '../api/users.js';
 import { grey500 } from 'material-ui/styles/colors';
 
-class Im extends Component {
+class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {openDialog:false};
@@ -98,4 +98,4 @@ export default withTracker(() => {
     return {
       userArray: Meteor.users.find({}).fetch(),
     };
-  })(Im);
+  })(Test);

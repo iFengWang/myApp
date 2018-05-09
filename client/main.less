@@ -2,15 +2,30 @@
 @import './const.less';
 
 body {
-    margin:@haha;
+    margin:@element_space;
+    padding:@child_padding;
     /* font-family: 'Roboto', sans-serif; */
     /* font-size: 36px; */
     /* text-shadow: 1px 1px 1px #333; */
     background-color: @bgColor;
-    width: percentage(@width);
-    overflow: auto;
+    // width: percentage(@width);
+    // overflow: hidden;
     // overflow-y:auto;
     -webkit-overflow-scrolling:touch;
+}
+
+.container {
+    display:'flex';
+    flex-direction:'column';
+    justify-content:'center';
+    align-items:'center';
+    background-color:#FFFFFF;
+    overflow:'hidden';
+}
+
+.calendarStyle {
+    width:'100%';
+    background-color: yellow;
 }
 
 /*汽泡-----------------------------------*/
@@ -85,6 +100,5 @@ body {
      left: -20px;
      top: 10px;
      position: absolute;
-     
  }
 

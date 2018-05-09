@@ -10,27 +10,48 @@ import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 
+import Header from '../Header.js';
+import Footer from '../Footer.js';
+
+const styles = {
+    content:{
+        width:'100%',
+        height:(Meteor.isCordova?window.screen.height:window.innerHeight)-(Meteor.isCordova?64:44)-50,
+        display:'flex', 
+        flexDirection:'column', 
+        justifyContent:'flexStart', 
+        alignItems:'center', 
+        overflow:'auto'
+    }
+  };
+
 class ChatList extends Component {
     render() {
         return (
-            <List style={{width:'100%'}}>
-                {this.props.chatGroup.map((chat,index) => (
-                    <ListItem
-                        primaryText={chat.groupName}
-                        secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
-                        leftAvatar={<Avatar src={chat.groupIcon} />}
-                        rightIcon={
-                            <Badge
-                            badgeContent={'99+'}
-                            secondary={true}
-                            badgeStyle={{top: 0, right: 5, width:30}}>
-                            </Badge>
-                        }
-                        onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
-                        style={{borderBottom:'dotted 1px #FF0000'}}
-                    />
-                ))}
-            </List>
+            <div>
+                <Header title='chat' />
+                <div style={styles.content}>
+                    <List style={{width:'100%'}}>
+                        {this.props.chatGroup.map((chat,index) => (
+                            <ListItem
+                                primaryText={chat.groupName}
+                                secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
+                                leftAvatar={<Avatar src={chat.groupIcon} />}
+                                rightIcon={
+                                    <Badge
+                                    badgeContent={'99+'}
+                                    secondary={true}
+                                    badgeStyle={{top: 0, right: 5, width:30}}>
+                                    </Badge>
+                                }
+                                onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
+                                style={{borderBottom:'dotted 1px #FF0000'}}
+                            />
+                        ))}
+                    </List>
+                </div>
+                <Footer selectedIndex={1} />
+            </div>
         );
     }
 }

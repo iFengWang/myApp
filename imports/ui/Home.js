@@ -1,22 +1,35 @@
 import React,{ Component } from 'react';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import Subheader from 'material-ui/Subheader';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Photos } from '../api/photos.js';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import Header from './Header.js';
+import Footer from './Footer.js';
+import CameraButton from './buttons/CameraButton.js';
 
 let pageCount = 3;
 
 const styles = {
+    content:{
+        width:'100%',
+        height:(Meteor.isCordova?window.screen.height:window.innerHeight)-(Meteor.isCordova?64:44)-50,
+        display:'flex', 
+        flexDirection:'column', 
+        justifyContent:'flexStart', 
+        alignItems:'center', 
+        overflow:'auto',
+        // backgroundColor:'#FF0000'
+    },
     gridList: {
       overflowY: 'auto',
       display:'flex',
       justifyContent:'flexStart',
-      width: window.innerWidth
+      width: '100%'
     },
     gridTile: {
         border:'dotted 1px #FF0000',
@@ -26,6 +39,7 @@ const styles = {
   };
 
 class Home extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -36,59 +50,63 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <GridList  
-                style={styles.gridList}
-                cols={2}>
-                {/* <Subheader>December</Subheader> */}
-                {this.props.photoList.map((photo,index,ary) => (
-                    <GridTile
-                    key={photo._id}
-                    padding={1}
-                    title={photo.title}
-                    subtitle={<span>by <b>{photo.author}</b></span>}
-                    actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                    cols={(ary.length%2==1 && index==ary.length-1) ? 2 : 1}
-                    style={styles.gridTile}
-                    onClick={() => this.setState({dialogParam:photo._id})}
-                    >
-                        <img src={photo.img} />
-                    </GridTile>
-                ))}
-                    <GridTile
-                    key={'more'}
-                    padding={1}
-                    title={this.state.isLoading?null:'加载更多'}
-                    titleStyle={{textAlign:'center',marginTop:5}}
-                    // subtitle={<span>by <b>{photo.author}</b></span>}
-                    // actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                    cols={2}
-                    style={{height:40}}
-                    onClick={() => {
-                        pageCount += 3;
-                        const subscribe = Meteor.subscribe('Photos',pageCount);
-                        if(subscribe.ready) {
-                            this.setState({isLoading:false});
-                        } else {
-                            this.setState({isLoading:true});
-                        }
-                    }}
-                    >
-                        {this.state.isLoading?
-                            <RefreshIndicator
-                            size={40}
-                            left={window.innerWidth/2-20}
-                            top={0}
-                            percentage={100}
-                            // color="red"
-                            loadingColor="red"
-                            status="loading"
-                            style={{display: 'inline-block',position: 'relative',alignContent:'center'}}
-                            />:null
-                        }
-                        
-                    </GridTile>
-                </GridList>
-                {this.state.dialogParam?this.renderDialog():null}
+                <Header title='home' rightButton={<CameraButton />} />
+                <div style={styles.content}>
+                    <GridList  
+                    style={styles.gridList}
+                    cols={2}>
+                    {/* <Subheader>December</Subheader> */}
+                    {this.props.photoList.map((photo,index,ary) => (
+                        <GridTile
+                        key={photo._id}
+                        padding={1}
+                        title={photo.title}
+                        subtitle={<span>by <b>{photo.author}</b></span>}
+                        actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                        cols={(ary.length%2==1 && index==ary.length-1) ? 2 : 1}
+                        style={styles.gridTile}
+                        onClick={() => this.setState({dialogParam:photo._id})}
+                        >
+                            <img src={photo.img} />
+                        </GridTile>
+                    ))}
+                        <GridTile
+                        key={'more'}
+                        padding={1}
+                        title={this.state.isLoading?null:'加载更多'}
+                        titleStyle={{textAlign:'center',marginTop:5}}
+                        // subtitle={<span>by <b>{photo.author}</b></span>}
+                        // actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                        cols={2}
+                        style={{height:40}}
+                        onClick={() => {
+                            pageCount += 3;
+                            const subscribe = Meteor.subscribe('Photos',pageCount);
+                            if(subscribe.ready) {
+                                this.setState({isLoading:false});
+                            } else {
+                                this.setState({isLoading:true});
+                            }
+                        }}
+                        >
+                            {this.state.isLoading?
+                                <RefreshIndicator
+                                size={40}
+                                left={window.innerWidth/2-20}
+                                top={0}
+                                percentage={100}
+                                // color="red"
+                                loadingColor="red"
+                                status="loading"
+                                style={{display: 'inline-block',position: 'relative',alignContent:'center'}}
+                                />:null
+                            }
+                            
+                        </GridTile>
+                    </GridList>
+                    {this.state.dialogParam?this.renderDialog():null}
+                </div>
+                <Footer selectedIndex={0} />
             </div>
         );
     }
