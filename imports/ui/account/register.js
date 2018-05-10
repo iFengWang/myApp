@@ -3,6 +3,18 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
+const styles = {
+    content:{
+        width:'100%',
+        height:(Meteor.isCordova?window.screen.height:window.innerHeight),
+        display:'flex', 
+        flexDirection:'column', 
+        justifyContent:'flexStart', 
+        alignItems:'center', 
+        overflow:'auto'
+    }
+  };
+
 export default class RegisterUI extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +26,7 @@ export default class RegisterUI extends Component {
     }
     render() {
         return (
-            <div style={{textAlign:'center'}}>
+            <div style={styles.content}>
                 <TextField 
                 hintText="邮箱格式应为：*@*.*"
                 floatingLabelText="请输入您的email" 

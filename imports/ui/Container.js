@@ -32,10 +32,12 @@ const muiTheme = getMuiTheme({
 
 export default class Container extends Component {
     render() {
+        let Tag = this.props.contents;
+        let Param = this.props.param;
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div className='container' zDepth={0}>
-                    {this.props.contents}
+                    <Tag {...Param} />
                 </div>
             </MuiThemeProvider>
         );

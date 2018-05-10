@@ -79,45 +79,78 @@ export default class Oa extends Component {
                                     // primaryText={'标题在此'}
                                     secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
                                     // leftAvatar={<Avatar src='images/avatar5.png' />}
-                                    leftIcon={<FontIcon className="material-icons md-36">create</FontIcon>}
+                                    leftIcon={<FontIcon className="material-icons md-36">alarm</FontIcon>}
                                     rightIcon={
                                         <FontIcon className="material-icons md-36">keyboard_arrow_right</FontIcon>
                                     }
                                     // onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
-                                    style={{borderBottom:'dotted 1px #FF0000'}}
+                                    style={{borderBottom:'dotted 1px #f18b06'}}
                                 />
                                 <ListItem
                                     // primaryText={'标题在此'}
                                     secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
                                     // leftAvatar={<Avatar src='images/avatar5.png' />}
-                                    leftIcon={<FontIcon className="material-icons md-36">create</FontIcon>}
+                                    leftIcon={<FontIcon className="material-icons md-36">done_outline</FontIcon>}
                                     rightIcon={
                                         <FontIcon className="material-icons md-36">keyboard_arrow_right</FontIcon>
                                     }
                                     // onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
-                                    style={{borderBottom:'dotted 1px #FF0000'}}
+                                    style={{borderBottom:'dotted 1px #f18b06'}}
                                 />
                                 <ListItem
                                     // primaryText={'标题在此'}
                                     secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
                                     // leftAvatar={<Avatar src='images/avatar5.png' />}
-                                    leftIcon={<FontIcon className="material-icons md-36">create</FontIcon>}
+                                    leftIcon={<FontIcon className="material-icons md-36">alarm</FontIcon>}
                                     rightIcon={
                                         <FontIcon className="material-icons md-36">keyboard_arrow_right</FontIcon>
                                     }
                                     // onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
-                                    style={{borderBottom:'dotted 1px #FF0000'}}
+                                    style={{borderBottom:'dotted 1px #f18b06'}}
                                 />
                                 <ListItem
                                     // primaryText={'标题在此'}
                                     secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
                                     // leftAvatar={<Avatar src='images/avatar5.png' />}
-                                    leftIcon={<FontIcon className="material-icons md-36">create</FontIcon>}
+                                    leftIcon={<FontIcon className="material-icons md-36">done_outline</FontIcon>}
                                     rightIcon={
                                         <FontIcon className="material-icons md-36">keyboard_arrow_right</FontIcon>
                                     }
                                     // onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
-                                    style={{borderBottom:'dotted 1px #FF0000'}}
+                                    style={{borderBottom:'dotted 1px #f18b06'}}
+                                />
+                                <ListItem
+                                    // primaryText={'标题在此'}
+                                    secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
+                                    // leftAvatar={<Avatar src='images/avatar5.png' />}
+                                    leftIcon={<FontIcon className="material-icons md-36">alarm</FontIcon>}
+                                    rightIcon={
+                                        <FontIcon className="material-icons md-36">keyboard_arrow_right</FontIcon>
+                                    }
+                                    // onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
+                                    style={{borderBottom:'dotted 1px #f18b06'}}
+                                />
+                                <ListItem
+                                    // primaryText={'标题在此'}
+                                    secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
+                                    // leftAvatar={<Avatar src='images/avatar5.png' />}
+                                    leftIcon={<FontIcon className="material-icons md-36">done_outline</FontIcon>}
+                                    rightIcon={
+                                        <FontIcon className="material-icons md-36">keyboard_arrow_right</FontIcon>
+                                    }
+                                    // onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
+                                    style={{borderBottom:'dotted 1px #f18b06'}}
+                                />
+                                <ListItem
+                                    // primaryText={'标题在此'}
+                                    secondaryText="群的最后一条消息在此显示，过多内容就会省略，不信你看看"
+                                    // leftAvatar={<Avatar src='images/avatar5.png' />}
+                                    leftIcon={<FontIcon className="material-icons md-36">alarm</FontIcon>}
+                                    rightIcon={
+                                        <FontIcon className="material-icons md-36">keyboard_arrow_right</FontIcon>
+                                    }
+                                    // onClick={()=>FlowRouter.go('/im/chat/'+chat._id+'?title='+chat.groupName)}
+                                    style={{borderBottom:'dotted 1px #f18b06'}}
                                 />
                             </List>
                         </div>

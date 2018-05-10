@@ -29,7 +29,7 @@ class ChatList extends Component {
     render() {
         return (
             <div>
-                <Header title='chat' />
+                <Header title={this.props.title} />
                 <div style={styles.content}>
                     <List style={{width:'100%'}}>
                         {this.props.chatGroup.map((chat,index) => (

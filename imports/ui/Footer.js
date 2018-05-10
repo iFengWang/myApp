@@ -20,27 +20,27 @@ export default class Footer extends Component {
     render() {
         return (
             <BottomNavigation selectedIndex={this.props.selectedIndex} zDepth={2} style={{height:50}}>
-                        <BottomNavigationItem
-                            label={<T>home</T>}
-                            icon={IconHome}
-                            onClick={() => this.select(0)}
-                        />
-                        <BottomNavigationItem
-                            label={<T>chat</T>}
-                            icon={IconChat}
-                            onClick={() => this.select(1)}
-                        />
-                        <BottomNavigationItem
-                            label={<T>office</T>}
-                            icon={IconOa}
-                            onClick={() => this.select(2)}
-                        />
-                        <BottomNavigationItem
-                            label={<T>me</T>}
-                            icon={IconMe}
-                            onClick={() => this.select(3)}
-                        />
-                    </BottomNavigation>
+                <BottomNavigationItem
+                    label={<T>home</T>}
+                    icon={IconHome}
+                    onClick={() => this.select(0)}
+                />
+                <BottomNavigationItem
+                    label={<T>chat</T>}
+                    icon={IconChat}
+                    onClick={() => this.select(1)}
+                />
+                <BottomNavigationItem
+                    label={<T>office</T>}
+                    icon={IconOa}
+                    onClick={() => this.select(2)}
+                />
+                <BottomNavigationItem
+                    label={<T>me</T>}
+                    icon={IconMe}
+                    onClick={() => this.select(3)}
+                />
+            </BottomNavigation>
         );
     }
     select(index) {

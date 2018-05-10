@@ -12,7 +12,7 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import CameraButton from './buttons/CameraButton.js';
 
-let pageCount = 3;
+let pageCount = 20;
 
 const styles = {
     content:{
@@ -50,7 +50,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Header title='home' rightButton={<CameraButton />} />
+                <Header title={this.props.title} rightButton={<CameraButton />} />
                 <div style={styles.content}>
                     <GridList  
                     style={styles.gridList}
@@ -147,6 +147,6 @@ class Home extends Component {
 export default withTracker(() => {
     Meteor.subscribe('Photos',pageCount);
     return {
-      photoList: Photos.find({}).fetch(),
+      photoList: Photos.find({},{sort:{createAt:-1}}).fetch(),
     };
   })(Home);

@@ -28,7 +28,7 @@ App.info({
   });
   
   // Set PhoneGap/Cordova preferences.
-  App.setPreference('BackgroundColor', '0xff0000');
+  // App.setPreference('BackgroundColor', '0xE62565');
   App.setPreference('Orientation', 'portrait');
   App.setPreference('Orientation', 'portrait', 'ios');
 

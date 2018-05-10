@@ -1,6 +1,6 @@
 {
-    "home":"home",
-    "chat":"chat",
-    "office":"oa",
-    "me":"me"
+    "home":"HOME",
+    "chat":"CHAT",
+    "office":"OA",
+    "me":"ME"
 }

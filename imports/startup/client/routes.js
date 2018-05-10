@@ -29,14 +29,14 @@ const account = FlowRouter.group({
 
 // account.route('/login',{
 //     action:function(param,queryParam) {
-//       ReactLayout.render(Container, {title:'登录',contents:<AccountUI />});
+//       ReactLayout.render(Container, {contents:AccountUI,param:{title:'登录'}});
 //     },
 //     triggersEnter:[]
 // });
 
 account.route('/register',{
       action:function(param,queryParam) {
-        ReactLayout.render(Container, {title:'注册',contents:<RegisterUI />});
+        ReactLayout.render(Container, {contents:RegisterUI,param:{title:'注册'}});
       },
       triggersEnter:[]
   });
@@ -47,12 +47,15 @@ const home = FlowRouter.group({
     name: 'home',
     triggersEnter: [function(context, redirect) {
         console.log('进入首页...组....');
+        if(!Meteor.userId()) {
+            FlowRouter.redirect('/account/register');
+        }
     }]
   });
 
   home.route('/',{
       action:function(param,queryParam) {
-        ReactLayout.render(Container, {title:'Home',contents:<Home />});
+        ReactLayout.render(Container, {contents:Home,param:{title:'首页'}});
       },
       triggersEnter:[]
   });
@@ -63,19 +66,21 @@ const home = FlowRouter.group({
         name: 'im',
         triggersEnter: [function(context, redirect) {
             console.log('进入IM...组....');
+            if(!Meteor.userId()) {
+                FlowRouter.redirect('/account/register');
+            }
         }]
     });
 
     im.route('/',{
         action:function(param,queryParam) {
-            ReactLayout.render(Container, {title:'Im',contents:<ChatList />});
+            ReactLayout.render(Container, {contents:ChatList,param:{title:'聊天'}});
         },
         triggersEnter:[]
     });
     im.route('/chat/:groupId',{
         action:function(param,queryParam) {
-            // console.log(JSON.stringify(param)+'.....'+JSON.stringify(queryParam));
-            ReactLayout.render(Container, {title:queryParam.title,contents:<Chat groupId={param.groupId} title={queryParam.title} />});
+            ReactLayout.render(Container, {contents:Chat,param:{groupId:param.groupId,title:queryParam.title}});
         },
         triggersEnter:[]
     });
@@ -87,19 +92,22 @@ const oa = FlowRouter.group({
     triggersEnter: [function(context, redirect) {
         console.log('进入OA...组....');
         // Meteor.subscribe('AllTasks');
+        if(!Meteor.userId()) {
+            FlowRouter.redirect('/account/register');
+        }
     }]
   });
 
   oa.route('/',{
       action:function(param,queryParam) {
-        ReactLayout.render(Container, {title:'OA',contents:<Oa />});
+        ReactLayout.render(Container, {contents:Oa,param:{title:'办公'}});
       },
       triggersEnter:[]
   });
 
   oa.route('/map',{
     action:function(param,queryParam) {
-      ReactLayout.render(Container, {title:'Map',contents:<AliMap />});
+      ReactLayout.render(Container, {contents:AliMap,param:{title:'地图'}});
     },
     triggersEnter:[]
   });
@@ -110,12 +118,15 @@ const me = FlowRouter.group({
     name: 'me',
     triggersEnter: [function(context, redirect) {
         console.log('进入ME...组....');
+        if(!Meteor.userId()) {
+            FlowRouter.redirect('/account/register');
+        }
     }]
   });
 
   me.route('/',{
       action:function(param,queryParam) {
-        ReactLayout.render(Container, {title:'Me',contents:<Me />});
+        ReactLayout.render(Container, {contents:Me,param:{title:'我的'}});
       },
       triggersEnter:[]
   });
@@ -126,6 +137,6 @@ const me = FlowRouter.group({
         //
     },
     action: function() {
-        ReactLayout.render(Container, {title:'查无此页', contents:<NotFound />});
+        ReactLayout.render(Container, {contents:NotFound,param:{title:'查无此页'}});
     }
 };
