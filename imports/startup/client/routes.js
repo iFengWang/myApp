@@ -9,6 +9,7 @@ import ChatList from '../../ui/im/ChatList.js';
 import Chat from '../../ui/im/Chat.js';
 
 import RegisterUI from '../../ui/account/register.js';
+import LoginUI from '../../ui/account/login.js';
 // import AccountUI from '../../ui/AccountUI.js';
 
 FlowRouter.route('/',{
@@ -27,12 +28,12 @@ const account = FlowRouter.group({
     }]
   });
 
-// account.route('/login',{
-//     action:function(param,queryParam) {
-//       ReactLayout.render(Container, {contents:AccountUI,param:{title:'登录'}});
-//     },
-//     triggersEnter:[]
-// });
+account.route('/login',{
+    action:function(param,queryParam) {
+      ReactLayout.render(Container, {contents:LoginUI,param:{title:'登录'}});
+    },
+    triggersEnter:[]
+});
 
 account.route('/register',{
       action:function(param,queryParam) {
@@ -46,9 +47,9 @@ const home = FlowRouter.group({
     prefix: '/home',
     name: 'home',
     triggersEnter: [function(context, redirect) {
-        console.log('进入首页...组....');
+        console.log('进入首页...组....',Meteor.userId());
         if(!Meteor.userId()) {
-            FlowRouter.redirect('/account/register');
+            FlowRouter.redirect('/account/login');
         }
     }]
   });
@@ -67,7 +68,7 @@ const home = FlowRouter.group({
         triggersEnter: [function(context, redirect) {
             console.log('进入IM...组....');
             if(!Meteor.userId()) {
-                FlowRouter.redirect('/account/register');
+                FlowRouter.redirect('/account/login');
             }
         }]
     });
@@ -93,7 +94,7 @@ const oa = FlowRouter.group({
         console.log('进入OA...组....');
         // Meteor.subscribe('AllTasks');
         if(!Meteor.userId()) {
-            FlowRouter.redirect('/account/register');
+            FlowRouter.redirect('/account/login');
         }
     }]
   });
@@ -119,7 +120,7 @@ const me = FlowRouter.group({
     triggersEnter: [function(context, redirect) {
         console.log('进入ME...组....');
         if(!Meteor.userId()) {
-            FlowRouter.redirect('/account/register');
+            FlowRouter.redirect('/account/login');
         }
     }]
   });

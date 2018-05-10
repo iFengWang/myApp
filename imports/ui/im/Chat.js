@@ -110,8 +110,8 @@ class Chat extends Component {
         event.preventDefault();
         Meteor.call(
             'ChatMessage.insert',
-            'sendId',
-            'sendname',
+            Meteor.userId(),
+            Meteor.user().emails[0].address,
             '/images/avatar5.png',
             '',
             '',

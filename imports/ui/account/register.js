@@ -54,7 +54,7 @@ export default class RegisterUI extends Component {
                 onClick={this.createUser.bind(this)} />
 
                 <div style={{marginTop:100}}>
-                    <FlatButton label="登录" style={{margin:10}} />
+                    <FlatButton label="登录" style={{margin:10}} onClick={()=> FlowRouter.go('/account/login')} />
                     <FlatButton label="忘记密码" style={{margin:10}} />
                 </div>
             </div>

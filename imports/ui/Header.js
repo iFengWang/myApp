@@ -38,7 +38,10 @@ export default class Header extends Component {
                 open={this.state.openDrawer}
                 onRequestChange={(openDrawer) => this.setState({openDrawer})} >
                     <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
+                    <MenuItem onClick={() => {
+                        Meteor.logout();
+                        FlowRouter.go('/account/login');
+                    }}>退出</MenuItem>
                 </Drawer>
                 <AppBar 
                 title={this.props.title} 
