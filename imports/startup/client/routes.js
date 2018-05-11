@@ -10,7 +10,6 @@ import Chat from '../../ui/im/Chat.js';
 
 import RegisterUI from '../../ui/account/register.js';
 import LoginUI from '../../ui/account/login.js';
-// import AccountUI from '../../ui/AccountUI.js';
 
 FlowRouter.route('/',{
     action:function(param,queryParam) {
@@ -25,6 +24,9 @@ const account = FlowRouter.group({
     name: 'account',
     triggersEnter: [function(context, redirect) {
         console.log('进入帐户...组....');
+        if(Meteor.userId()) {
+            FlowRouter.redirect('/home');
+        }
     }]
   });
 

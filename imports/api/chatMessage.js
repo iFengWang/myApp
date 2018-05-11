@@ -9,15 +9,12 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'ChatMessage.insert'(sendId,sendName,sendIcon,reciveId,reciveIcon,reciveName,message,groupId) {
+    'ChatMessage.insert'(sendId,reciveId,message,msgType,groupId) {
         ChatMessage.insert({
             sendId:sendId,
-            sendName:sendName,
-            sendIcon:sendIcon,
             reciveId:reciveId,
-            reciveIcon:reciveIcon,
-            reciveName:reciveName,
             message:message,
+            msgType:msgType,
             groupId:groupId,
             createAt:new Date()
         });

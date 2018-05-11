@@ -10,11 +10,11 @@ import { check } from 'meteor/check';
 //     remove() { return true; },
 //   });
 
-// if (Meteor.isServer) {
-//     Meteor.publish('UserList', function () {
-//         return Meteor.users.find({},{fields:{username:1}});
-//     });
-// }
+if (Meteor.isServer) {
+    Meteor.publish('UserProFile', function () {
+        return Meteor.users.find({},{filter:{profile:1}});
+    });
+}
 
 Meteor.methods({
     'user.create'(email, pwd, callback) {
@@ -30,7 +30,10 @@ Meteor.methods({
         //     }
         // }
 
-        const user = {password:pwd,email:email}
+        const user = {
+            password:pwd,
+            email:email
+        }
 
         // Accounts.validateNewUser((user) => {
         //     new SimpleSchema({

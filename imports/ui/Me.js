@@ -4,8 +4,6 @@ import FlatButton from 'material-ui/FlatButton';
 import Header from './Header.js';
 import Footer from './Footer.js';
 
-// import AccountUI from './AccountUI.js';
-
 const styles = {
     content:{
         width:'100%',

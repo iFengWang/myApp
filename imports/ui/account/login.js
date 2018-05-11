@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
 
 const styles = {
     content:{
@@ -21,12 +23,14 @@ export default class LoginUI extends Component {
         this.state = {
             mail:'',
             pwd1:'',
-            pwd2:'',
         };
     }
     render() {
         return (
-            <div style={styles.content}>
+            <div style={styles.content} className='accountBg'>
+                <div style={{height:200}}>
+                    <img src='/icons/icon-50.png' style={{marginTop:'200%'}} />
+                </div>
                 <TextField 
                 hintText="邮箱格式应为：*@*.*"
                 floatingLabelText="请输入您的email" 
@@ -40,13 +44,7 @@ export default class LoginUI extends Component {
                 type="password" 
                 value={this.state.pwd1}
                 onChange={(event,newValue)=>this.setState({pwd1:newValue})}
-                style={{width:300}} /><br />
-                <TextField 
-                floatingLabelText="再次输入密码" 
-                type="password" 
-                value={this.state.pwd2}
-                onChange={(event,newValue)=>this.setState({pwd2:newValue})}
-                style={{width:300}} /><br />
+                style={{width:300}} />
 
                 <RaisedButton label="登录" 
                 secondary={true} 
@@ -54,8 +52,18 @@ export default class LoginUI extends Component {
                 onClick={this.loginWithPassword.bind(this)} />
 
                 <div style={{marginTop:100}}>
-                    <FlatButton label="注册" style={{margin:10}} onClick={()=> FlowRouter.go('/account/register')}/>
-                    <FlatButton label="忘记密码" style={{margin:10}} />
+                    <FlatButton 
+                    label="注册用户" 
+                    labelPosition="after" 
+                    style={{margin:10,color:'#fc4482'}} 
+                    icon={<FontIcon className="material-icons md-36">how_to_reg</FontIcon>}
+                    onClick={()=> FlowRouter.go('/account/register')}/>
+
+                    <FlatButton 
+                    label="忘记密码" 
+                    labelPosition="after" 
+                    style={{margin:10,color:'#fc4482'}} 
+                    icon={<FontIcon className="material-icons md-36">vpn_key</FontIcon>}/>
                 </div>
             </div>
         );

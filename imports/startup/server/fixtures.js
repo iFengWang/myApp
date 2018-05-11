@@ -15,7 +15,11 @@ Meteor.startup(() => {
   if(Meteor.isServer) {
 
     Accounts.onCreateUser((options, user) => {
-      user.profile = {};
+      user.profile = {
+        nickName:'阿宝',
+        sex:true,      //true:男，false:女
+        icon:null
+      };
       console.log('用户创建成功。。。。。。。。。');
       Meteor.setTimeout(function() { Accounts.sendVerificationEmail(user._id);}, 2 * 1000);
       return user;

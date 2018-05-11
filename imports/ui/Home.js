@@ -22,14 +22,14 @@ const styles = {
         flexDirection:'column', 
         justifyContent:'flexStart', 
         alignItems:'center', 
-        overflow:'auto',
-        // backgroundColor:'#FF0000'
+        overflow:'auto'
     },
     gridList: {
       overflowY: 'auto',
       display:'flex',
       justifyContent:'flexStart',
-      width: '100%'
+      width: '100%',
+      marginTop:2
     },
     gridTile: {
         border:'dotted 1px #FF0000',
@@ -71,14 +71,16 @@ class Home extends Component {
                         </GridTile>
                     ))}
                         <GridTile
-                        key={'more'}
                         padding={1}
                         title={this.state.isLoading?null:'加载更多'}
                         titleStyle={{textAlign:'center',marginTop:5}}
                         // subtitle={<span>by <b>{photo.author}</b></span>}
                         // actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                         cols={2}
-                        style={{height:40}}
+                        style={{
+                            height:40,
+                            borderRadius:5,
+                            border:'dotted 1px #FF0000'}}
                         onClick={() => {
                             pageCount += 3;
                             const subscribe = Meteor.subscribe('Photos',pageCount);
@@ -101,7 +103,6 @@ class Home extends Component {
                                 style={{display: 'inline-block',position: 'relative',alignContent:'center'}}
                                 />:null
                             }
-                            
                         </GridTile>
                     </GridList>
                     {this.state.dialogParam?this.renderDialog():null}
