@@ -11,10 +11,19 @@ import Chat from '../../ui/im/Chat.js';
 import RegisterUI from '../../ui/account/register.js';
 import LoginUI from '../../ui/account/login.js';
 
+import Test from '../../ui/Test.js';
+
 FlowRouter.route('/',{
     action:function(param,queryParam) {
         console.log('进入根....');
         FlowRouter.redirect('/home');
+    }
+});
+
+FlowRouter.route('/test',{
+    action:function(param,queryParam) {
+        console.log('测试....');
+        ReactLayout.render(Container, {contents:Test,param:{title:'登录'}});
     }
 });
 
@@ -49,7 +58,7 @@ const home = FlowRouter.group({
     prefix: '/home',
     name: 'home',
     triggersEnter: [function(context, redirect) {
-        console.log('进入首页...组....',Meteor.userId());
+        console.log('进入首页...组....');
         if(!Meteor.userId()) {
             FlowRouter.redirect('/account/login');
         }

@@ -57,7 +57,7 @@ class Chat extends Component {
                                 return item._id===chat.sendId;
                             });
                             let u = us[0];
-                            // console.log('u.....',chat.sendId,u.profile.nickName);
+                            // console.log('u.....',chat.sendId,u.services.password);
                             return (
                                 <ListItem key={index}>
                                 {false?

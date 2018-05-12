@@ -52,6 +52,7 @@ class Test extends Component {
                 <br />
                 <RaisedButton label="登录" secondary={true} style={{margin:5}} onClick={(e) => this.setState({openDialog:true})}/>
                 <RaisedButton label="注册" secondary={true} style={{margin:5}} onClick={(e) => this.setState({openDialog:true})}/>
+                <RaisedButton label="声音" secondary={true} style={{margin:5}} onClick={(e) => this.setState({openDialog:true})}/>
                 {this.showDialog()}
                 <br />
                 <DatePicker hintText="Portrait Dialog" />

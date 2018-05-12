@@ -63,7 +63,7 @@ export default class RegisterUI extends Component {
                 label="登录帐号" 
                 labelPosition="after" 
                 style={{margin:10,color:'#fc4482'}} 
-                icon={<FontIcon className="material-icons md-36">input</FontIcon>}
+                icon={<FontIcon className="material-icons md-36">how_to_vote</FontIcon>}
                 onClick={()=> FlowRouter.go('/account/login')}/>
 
                 <FlatButton 

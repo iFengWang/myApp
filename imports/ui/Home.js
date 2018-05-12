@@ -82,7 +82,7 @@ class Home extends Component {
                             borderRadius:5,
                             border:'dotted 1px #FF0000'}}
                         onClick={() => {
-                            pageCount += 3;
+                            pageCount += 20;
                             const subscribe = Meteor.subscribe('Photos',pageCount);
                             if(subscribe.ready) {
                                 this.setState({isLoading:false});

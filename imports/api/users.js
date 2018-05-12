@@ -12,7 +12,7 @@ import { check } from 'meteor/check';
 
 if (Meteor.isServer) {
     Meteor.publish('UserProFile', function () {
-        return Meteor.users.find({},{filter:{profile:1}});
+        return Meteor.users.find({},{fields:{profile:1}});
     });
 }
 
@@ -38,12 +38,15 @@ Meteor.methods({
         // Accounts.validateNewUser((user) => {
         //     new SimpleSchema({
         //       _id: { type: String },
+        //       service: { type: Object, optional: true},
+        //       'service.$': { type: Object },
+        //       'service.$.password': {type: String},
         //       emails: { type: Array, optional: true},
         //       'emails.$': { type: Object },
         //       'emails.$.address': { type: String },
         //       'emails.$.verified': { type: Boolean },
-        //       createdAt: { type: Date },
-        //       services: { type: Object, blackbox: true }
+        //     //   createdAt: { type: Date },
+        //     //   services: { type: Object, blackbox: true }
         //     }).validate(user);
         //     return true;
         // });

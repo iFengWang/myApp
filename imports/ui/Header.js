@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -9,6 +10,8 @@ import TextField from 'material-ui/TextField';
 import AutoComplete from 'material-ui/AutoComplete';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
+import Avatar from 'material-ui/Avatar';
+import { ListItem } from 'material-ui/List';
 
 const iconArray = [
     'images/avatar1.png', 
@@ -17,7 +20,11 @@ const iconArray = [
     'images/avatar4.png',
     'images/avatar5.png',
     'images/avatar6.png',
-    'images/avatar7.png'];
+    'images/avatar7.png',
+    'images/avatar8.png',
+    'images/avatar9.png',
+    'images/avatar10.png',
+    'images/avatar11.png'];
 
 export default class Header extends Component {
     constructor(props) {
@@ -30,6 +37,8 @@ export default class Header extends Component {
         };
     }
     render() {
+        let userName = Meteor.userId() && Meteor.user() && Meteor.user().profile && Meteor.user().profile.nickName ? Meteor.user().profile.nickName : '';
+        let userIcon = Meteor.userId() && Meteor.user() && Meteor.user().profile && Meteor.user().profile.icon ? Meteor.user().profile.icon : '/images/avatar13.png';
         return (
             <div>
                 <Drawer
@@ -37,12 +46,41 @@ export default class Header extends Component {
                 width={200}
                 open={this.state.openDrawer}
                 onRequestChange={(openDrawer) => this.setState({openDrawer})} >
-                    <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
-                    <MenuItem onClick={() => {
-                        Meteor.logout((err)=>{
-                            if(!err) FlowRouter.go('/account/login');
-                        });
-                    }}>退出</MenuItem>
+                    <div>
+                        <ListItem style={{borderBottom:'dotted 1px red',height:120,textAlign:'center',paddingTop:10}}>
+                            <Avatar src={userIcon} size={50}/><br />
+                            <span style={{lineHeight:2}}>{userName}</span>
+                        </ListItem>
+                        
+                        <ListItem 
+                        leftIcon={<FontIcon className="material-icons md-36" color={'yellow'}>send</FontIcon>}
+                        primaryText={'发送邮件'}
+                        // onClick={() => {Meteor.logout((err)=>{ if(!err) FlowRouter.go('/account/login')})}}
+                        style={{borderBottom:'dotted 1px red'}}>
+                        </ListItem>
+
+                        <ListItem 
+                        leftIcon={<FontIcon className="material-icons md-36" color={'yellow'}>reply_all</FontIcon>}
+                        primaryText={'我要分享'}
+                        // onClick={() => {Meteor.logout((err)=>{ if(!err) FlowRouter.go('/account/login')})}}
+                        style={{borderBottom:'dotted 1px red'}}>
+                        </ListItem>
+
+                        <ListItem 
+                        leftIcon={<FontIcon className="material-icons md-36" color={'yellow'}>wifi_tethering</FontIcon>}
+                        primaryText={'WIFI互传'}
+                        // onClick={() => {Meteor.logout((err)=>{ if(!err) FlowRouter.go('/account/login')})}}
+                        style={{borderBottom:'dotted 1px red'}}>
+                        </ListItem>
+
+                        <ListItem 
+                        leftIcon={<FontIcon className="material-icons md-36" color={'yellow'}>exit_to_app</FontIcon>}
+                        primaryText={'退出帐号'}
+                        onClick={() => {Meteor.logout((err)=>{ if(!err) FlowRouter.go('/account/login')})}}
+                        style={{borderBottom:'dotted 1px red'}}>
+                        </ListItem>
+                    </div>
+                    
                 </Drawer>
                 <AppBar 
                 title={this.props.title} 
