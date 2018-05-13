@@ -9,3 +9,5 @@
 // });
 
 import '../imports/startup/server';
+
+import { T } from '../imports/i18n';
